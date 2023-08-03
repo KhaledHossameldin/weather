@@ -9,6 +9,11 @@ header {
     height: 16.875rem;
 }
 
+.card-body img {
+    width: 6rem;
+    height: 6rem;
+}
+
 /* Footer */
 .social-links div {
     cursor: pointer;

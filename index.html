@@ -48,14 +48,14 @@
         <div class="container">
             <div class="d-flex gap-3">
                 <input type="city" id="city" class="form-control" placeholder="Find your location..." />
-                <button class="btn btn-light px-4">Find</button>
+                <button id="search-button" class="btn btn-light px-4">Find</button>
             </div>
         </div>
         <div class="container">
             <div class="row mb-3 text-center">
                 <div class="col-lg-4">
-                    <div class="card mb-4 rounded-3 shadow-sm border-light">
-                        <div class="card-header py-3 d-flex justify-content-around text-bg-light border-light">
+                    <div id="today" class="card mb-4 rounded-3 shadow-sm border-light">
+                        <div class="card-header py-3 d-flex justify-content-between text-bg-light border-light">
                             <p class="mb-0">Day</p>
                             <p class="mb-0">0 Month</p>
                         </div>
@@ -63,9 +63,9 @@
                             <p class="fw-bold">Location</p>
                             <div class="d-flex justify-content-around align-items-center text-light w-100">
                                 <h2 class="card-title display-2 fw-bold">00<sup>o</sup>C</h2>
-                                <i class="fa-solid fa-sun fa-3x"></i>
+                                <img src="#" alt="today-icon" />
                             </div>
-                            <p class="text-light">Condition</p>
+                            <p class="text-light mb-0">Condition</p>
                             <div class="d-flex justify-content-around mt-3 w-100">
                                 <p><i class="fa-solid fa-umbrella"></i> Percentage</p>
                                 <p><i class="fa-solid fa-wind"></i> Speed</p>
@@ -75,12 +75,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="card mb-4 rounded-3 shadow-sm">
+                    <div id="tomorrow" class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
                             <p class="mb-0">Day</p>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-evenly">
-                            <i class="fa-solid fa-sun fa-2x text-light"></i>
+                            <img src="#" alt="tomorrow-icon" class="mx-auto" />
                             <div>
                                 <h2 class="card-title fw-bold text-light">00<sup>o</sup>C</h2>
                                 <p class="card-title">00<sup>o</sup>C</p>
@@ -90,12 +90,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="card mb-4 rounded-3 shadow-sm">
+                    <div id="next-day" class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
                             <p class="mb-0">Day</p>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-evenly">
-                            <i class="fa-solid fa-sun fa-2x text-light"></i>
+                            <img src="#" alt="next-day-icon" class="mx-auto" />
                             <div>
                                 <h2 class="card-title fw-bold text-light">00<sup>o</sup>C</h2>
                                 <p class="card-title">00<sup>o</sup>C</p>
