@@ -1,0 +1,27 @@
+/* Header */
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/landscape.jpg');
+    background-position: center center;
+    padding-top: 4.5rem;
+}
+
+.card-body {
+    height: 16.875rem;
+}
+
+/* Footer */
+.social-links div {
+    cursor: pointer;
+    width: 2.1875rem;
+    height: 2.1875rem;
+    background-color: rgb(33, 37, 41);
+    transition: 0.5s background-color;
+    -webkit-transition: 0.5s background-color;
+    -moz-transition: 0.5s background-color;
+    -ms-transition: 0.5s background-color;
+    -o-transition: 0.5s background-color;
+}
+
+.social-links div:hover {
+    background-color: rgb(248, 249, 250);
+}
