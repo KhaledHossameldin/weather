@@ -9,22 +9,36 @@ let cards = [
 
 // * variables
 const apiKey = '37bf5085603d4b03859105240233107';
-let city = 'cairo';
 
 // * functions
-(async function () {
-    let data = await getWeatherData(city);
+(async function () { getCurrenctLocation(); })()
+
+async function getCurrenctLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async function (position) {
+            searchAndSet(`${position.coords.latitude},${position.coords.longitude}`);
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+        searchAndSet('cairo');
+    }
+}
+
+async function searchAndSet(searchValue) {
+    let data = await getWeatherData(searchValue);
     setToday(data.today);
     setDay(data.tomorrow, 1);
     setDay(data.nextDay, 2);
-})()
+}
 
 function setToday(today) {
     let header = cards[0].querySelectorAll('.card-header p');
     header[0].innerHTML = today.date.day;
     header[1].innerHTML = today.date.month;
     cards[0].querySelector('.card-body > p').innerHTML = today.city;
-    cards[0].querySelector('.card-body img').setAttribute('src', today.condition.icon);
+    let iconImage = cards[0].querySelector('.card-body img');
+    iconImage.setAttribute('src', today.condition.icon);
+    iconImage.classList.remove('d-none');
     cards[0].querySelector('.card-body h2').innerHTML = `${today.temprature}<sup>o</sup>C`;
     cards[0].querySelector('.card-body p.text-light').innerHTML = today.condition.text;
     let conditions = cards[0].querySelectorAll('.card-body div p');
@@ -35,15 +49,17 @@ function setToday(today) {
 
 function setDay(day, index) {
     cards[index].querySelector('.card-header p').innerHTML = day.date.day;
-    cards[index].querySelector('.card-body img').setAttribute('src', day.condition.icon);
+    let iconImage = cards[index].querySelector('.card-body img');
+    iconImage.setAttribute('src', day.condition.icon);
+    iconImage.classList.remove('d-none');
     cards[index].querySelector('.card-body h2').innerHTML = `${day.temprature.max}<sup>o</sup>C`;
     cards[index].querySelector('.card-body div p').innerHTML = `${day.temprature.min}<sup>o</sup>C`;
     cards[index].querySelector('.card-body > p').innerHTML = day.condition.text;
 
 }
 
-async function getWeatherData(city) {
-    let response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`);
+async function getWeatherData(search) {
+    let response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${search}&days=3`);
     let body = await response.json();
     if (response.status == 200) {
         return {
@@ -85,8 +101,6 @@ async function getWeatherData(city) {
             },
         };
 
-    } else {
-        alert(body.error.message);
     }
 }
 
@@ -116,18 +130,12 @@ function getWindDirection(direction) {
 // * events
 searchInput.addEventListener('keyup', async function () {
     if (searchInput.value.length >= 3) {
-        let data = await getWeatherData(searchInput.value);
-        setToday(data.today);
-        setDay(data.tomorrow, 1);
-        setDay(data.nextDay, 2);
+        searchAndSet(searchInput.value);
     }
 });
 
 searchButton.addEventListener('click', async function () {
     if (searchInput.value.length >= 3) {
-        let data = await getWeatherData(searchInput.value);
-        setToday(data.today);
-        setDay(data.tomorrow, 1);
-        setDay(data.nextDay, 2);
+        searchAndSet(searchInput.value);
     }
 });
