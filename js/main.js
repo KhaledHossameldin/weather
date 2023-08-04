@@ -59,10 +59,7 @@ function setDay(day, index) {
 }
 
 async function getWeatherData(search) {
-    let response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${search}&days=3`, {
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-    });
+    let response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${search}&days=3`);
     let body = await response.json();
     if (response.status == 200) {
         return {
